@@ -30,24 +30,26 @@ function WhackAMole ({
     const [score,setScore] = useState(0)
     const [timeLeft , setTimeLeft] = useState(gameDuration)
     let timeLeftFlag
-
+    let lastRenderTime =0
     useEffect(()=>{
-     let moleTimerFlag
+        let moleAnimationId;
+
+        const animateMoles = (timestamp) => {
+          if (isRunning && timeLeft > 0) {
+            moleAnimationId = requestAnimationFrame(animateMoles);
+            const currentTime = performance.now();
+            if (currentTime - lastRenderTime > moleAppearingDuration) {
+              renderMole();
+              lastRenderTime = currentTime;
+            }
+          }
+        };
       
-        if(isRunning && timeLeft>0){
-         
-            moleTimerFlag = setInterval(()=>{
-               Array.from({length:moleToAppear}).forEach((_,index)=>renderMole())
-                
-            },moleAppearingDuration)
-
-        }
-
-
-      return ()=> {
-        clearInterval(moleTimerFlag)
-       
-    }
+        animateMoles();
+      
+        return () => {
+          cancelAnimationFrame(moleAnimationId);
+        };
 
     },[isRunning,moleToAppear, moleAppearingDuration,timeLeft  ])
 
