@@ -1,0 +1,46 @@
+
+.game-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.game-score{
+    margin-top: 100px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+
+.start-game{
+    margin: auto;
+    margin-top: 100px;
+    
+    width: 100px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+   display: flex;
+   justify-content: center;
+}
+
+.game-area{
+    margin-top: 200px;
+    /* margin: auto; */
+    column-gap: 20px;
+  row-gap: 70px;
+  position: relative;
+  /* justify-content: space-around; */
+  /* aspect-ratio: 1/1; */
+}
+
+.hillImg{
+    width: 150px;
+    height: 50px;
+}
+
+.mole-Img{
+    position: absolute; 
+    width: 150px;
+    height: 100px;
+    bottom: 79%;
+    object-fit: contain;
+}
